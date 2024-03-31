@@ -32,7 +32,7 @@ jobs:
               run: sudo apt-get update && sudo apt-get install -y gcc && sudo apt-get install -y make
             # Build 
             - name: Build & Run the library
-              run: sudo ./build.sh
+              run: sudo source build.sh
               
               
             
