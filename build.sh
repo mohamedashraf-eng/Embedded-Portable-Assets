@@ -10,8 +10,8 @@ s="Stack/Wx_Static_Stack.o"
 # t="Tree/Wx_Static_Tree.o"
 # g="Graph/Wx_Static_Graph.o"
 cflags="-O0 -g -std=c99"
-gcc main.c "$r$ll" "$r$q" "$r$s" -o output.exe "$cflags" -I"$plf"
+gcc main.c "$r$ll" "$r$q" "$r$s" -o output "$cflags" -I"$plf"
 
 echo "======================================================"
-sudo ./output.exe
+sudo ./output
 echo "======================================================"
