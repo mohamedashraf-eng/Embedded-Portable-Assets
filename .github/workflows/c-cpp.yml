@@ -18,4 +18,4 @@ jobs:
 
         env:
             DEFAULT_BRANCH: main
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GHA_TOKEN_TOKEN: ${{ secrets.GHA_TOKEN }}
