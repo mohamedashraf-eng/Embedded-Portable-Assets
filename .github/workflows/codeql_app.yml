@@ -58,8 +58,6 @@ jobs:
     - if: matrix.build-mode == 'manual'
       run: |
         echo "Running a manual build"
-        make
-        make clean
         bash build.sh
 
     - name: Perform CodeQL Analysis
