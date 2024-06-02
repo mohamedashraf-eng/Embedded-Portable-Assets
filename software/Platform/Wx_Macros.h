@@ -30,6 +30,8 @@
 #if !defined(__WX_MACROS_H__)
 #define __WX_MACROS_H__
 
+#include "Wx_StdTypes.h"
+
 /** @brief cpp name mangle guard */
 #if defined(__cplusplus) || defined(c_plusplus)
 extern "C" {
@@ -75,7 +77,7 @@ extern "C" {
  * @return _TYPE* Pointer to the parent struct.
  */
 #define WX_CONTAINER_OF(_PTR, _TYPE, _MEMBER) (__extension__((      \
-    __CONST WX_TYPE_OF( ((_TYPE*)0)->_MEMBER ) *__mptr = (_PTR);    \
+    _WX_CONST WX_TYPE_OF( ((_TYPE*)0)->_MEMBER ) *__mptr = (_PTR);    \
     (_TYPE*)( (WX_U8*)__mptr - WX_OFFSET_OF(_TYPE, _MEMBER));       \
 )) )
 
@@ -99,6 +101,12 @@ extern "C" {
  */
 #define STRING(_EXPR) _STRING( (_EXPR) )
 
+/**
+ * @brief Function like macro to get the array dimensions.
+ * @param _ARR The array to be calculated its dim.
+ * @return unsigned long The array dimension. 
+*/
+#define WX_DIM(_ARR) (WX_U32)(sizeof((_ARR)) / sizeof((_ARR)[0u]))
 /** @} */
 
 /*----------------------------------------------------------------------------*/

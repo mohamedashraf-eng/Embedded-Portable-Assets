@@ -127,12 +127,12 @@ extern "C" {
 /** @} */
 /*----------------------------------------------------------------------------*/
 
-/** 
- * @defgroup Abstracted platform types 
+/**
+ * @defgroup AbstractedTypes Abstracted Platform Types
  * @{
  */
 
-/** @brief Concise Name */
+/** @brief Concise Type Names */
 #define WX_U8           _uint8
 #define WX_U16          _uint16
 #define WX_U32          _uint32
@@ -145,6 +145,20 @@ extern "C" {
 #define WX_F64          _float64
 #define WX_BOOL         _boolean
 
+/** @brief Casting Macros for Concise Types */
+#define WXCAST_U8(_A)   (_uint8)(_A)
+#define WXCAST_U16(_A)  (_uint16)(_A)
+#define WXCAST_U32(_A)  (_uint32)(_A)
+#define WXCAST_U64(_A)  (_uint64)(_A)
+#define WXCAST_S8(_A)   (_sint8)(_A)
+#define WXCAST_S16(_A)  (_sint16)(_A)
+#define WXCAST_S32(_A)  (_sint32)(_A)
+#define WXCAST_S64(_A)  (_sint64)(_A)
+#define WXCAST_F32(_A)  (_float32)(_A)
+#define WXCAST_F64(_A)  (_float64)(_A)
+#define WXCAST_BOOL(_A) (_boolean)(_A)
+
+/** @brief Pointer Type Definitions for Concise Types */
 #define WX_U8P         _uint8ptr
 #define WX_U16P        _uint16ptr
 #define WX_U32P        _uint32ptr
@@ -157,6 +171,20 @@ extern "C" {
 #define WX_F64P        _float64ptr
 #define WX_BOOLPTR     _boolptr
 
+/** @brief Casting Macros for Pointer Types of Concise Types */
+#define WXCAST_U8P(_A)     (_uint8ptr)(_A)
+#define WXCAST_U16P(_A)    (_uint16ptr)(_A)
+#define WXCAST_U32P(_A)    (_uint32ptr)(_A)
+#define WXCAST_U64P(_A)    (_uint64ptr)(_A)
+#define WXCAST_S8P(_A)     (_sint8ptr)(_A)
+#define WXCAST_S16P(_A)    (_sint16ptr)(_A)
+#define WXCAST_S32P(_A)    (_sint32ptr)(_A)
+#define WXCAST_S64P(_A)    (_sint64ptr)(_A)
+#define WXCAST_F32P(_A)    (_float32ptr)(_A)
+#define WXCAST_F64P(_A)    (_float64ptr)(_A)
+#define WXCAST_BOOLPTR(_A) (_boolptr)(_A)
+
+/** @brief Least and Fast Integer Types */
 #define WX_U8_L        _uint8_least
 #define WX_U16_L       _uint16_least
 #define WX_U32_L       _uint32_least
@@ -164,7 +192,15 @@ extern "C" {
 #define WX_S16_F       _sint16_fast
 #define WX_S32_F       _sint32_fast
 
-/** @brief Full Name */
+/** @brief Casting Macros for Least and Fast Integer Types */
+#define WXCAST_U8_L(_A)  (_uint8_least)(_A)
+#define WXCAST_U16_L(_A) (_uint16_least)(_A)
+#define WXCAST_U32_L(_A) (_uint32_least)(_A)
+#define WXCAST_S8_F(_A)  (_sint8_fast)(_A)
+#define WXCAST_S16_F(_A) (_sint16_fast)(_A)
+#define WXCAST_S32_F(_A) (_sint32_fast)(_A)
+
+/** @brief Full Type Names */
 #define WX_UINT8           _uint8
 #define WX_UINT16          _uint16
 #define WX_UINT32          _uint32
@@ -176,6 +212,19 @@ extern "C" {
 #define WX_FLOAT32         _float32
 #define WX_FLOAT64         _float64
 
+/** @brief Casting Macros for Full Type Names */
+#define WXCAST_UINT8(_A)           (_uint8)(_A)
+#define WXCAST_UINT16(_A)          (_uint16)(_A)
+#define WXCAST_UINT32(_A)          (_uint32)(_A)
+#define WXCAST_UINT64(_A)          (_uint64)(_A)
+#define WXCAST_INT8(_A)            (_sint8)(_A)
+#define WXCAST_INT16(_A)           (_sint16)(_A)
+#define WXCAST_INT32(_A)           (_sint32)(_A)
+#define WXCAST_INT64(_A)           (_sint64)(_A)
+#define WXCAST_FLOAT32(_A)         (_float32)(_A)
+#define WXCAST_FLOAT64(_A)         (_float64)(_A)
+
+/** @brief Pointer Type Definitions for Full Type Names */
 #define WX_UINT8PTR        _uint8ptr
 #define WX_UINT16PTR       _uint16ptr
 #define WX_UINT32PTR       _uint32ptr
@@ -187,13 +236,35 @@ extern "C" {
 #define WX_FLOAT32PTR      _float32ptr
 #define WX_FLOAT64PTR      _float64ptr
 
+/** @brief Casting Macros for Pointer Types of Full Type Names */
+#define WXCAST_UINT8PTR(_A)        (_uint8ptr)(_A)
+#define WXCAST_UINT16PTR(_A)       (_uint16ptr)(_A)
+#define WXCAST_UINT32PTR(_A)       (_uint32ptr)(_A)
+#define WXCAST_UINT64PTR(_A)       (_uint64ptr)(_A)
+#define WXCAST_INT8PTR(_A)         (_sint8ptr)(_A)
+#define WXCAST_INT16PTR(_A)        (_sint16ptr)(_A)
+#define WXCAST_INT32PTR(_A)        (_sint32ptr)(_A)
+#define WXCAST_INT64PTR(_A)        (_sint64ptr)(_A)
+#define WXCAST_FLOAT32PTR(_A)      (_float32ptr)(_A)
+#define WXCAST_FLOAT64PTR(_A)      (_float64ptr)(_A)
+
+/** @brief Least and Fast Integer Types with Full Names */
 #define WX_UINT8_LEAST     _uint8_least
 #define WX_UINT16_LEAST    _uint16_least
 #define WX_UINT32_LEAST    _uint32_least
 #define WX_SINT8_FAST      _sint8_fast
 #define WX_SINT16_FAST     _sint16_fast
 #define WX_SINT32_FAST     _sint32_fast
-/** @} */
+
+/** @brief Casting Macros for Least and Fast Integer Types with Full Names */
+#define WXCAST_UINT8_LEAST(_A)     (_uint8_least)(_A)
+#define WXCAST_UINT16_LEAST(_A)    (_uint16_least)(_A)
+#define WXCAST_UINT32_LEAST(_A)    (_uint32_least)(_A)
+#define WXCAST_SINT8_FAST(_A)      (_sint8_fast)(_A)
+#define WXCAST_SINT16_FAST(_A)     (_sint16_fast)(_A)
+#define WXCAST_SINT32_FAST(_A)     (_sint32_fast)(_A)
+
+/** @} */ /* End of AbstractedTypes */
 
 /*----------------------------------------------------------------------------*/
 
