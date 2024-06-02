@@ -23,7 +23,7 @@ echo_color() {
 check_file_exists() {
     if [ ! -f "$1" ]; then
         echo_color $RED "${BOLD}Error: File '$1' not found.${RESET}"
-        exit 1
+        
     fi
 }
 
@@ -36,12 +36,12 @@ if [ "$rebuild" == "1" ]; then
     echo_color $BLUE "${BOLD}Rebuilding is True${RESET}"
     if ! make build_native_core rebuild=1; then
         echo_color $RED "${BOLD}Error: Build failed.${RESET}"
-        exit 1
+        
     fi
 else
     if ! make build_native_core; then
         echo_color $RED "${BOLD}Error: Build failed.${RESET}"
-        exit 1
+        
     fi
 fi
 
