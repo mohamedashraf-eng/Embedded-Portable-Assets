@@ -49,7 +49,7 @@ extern "C" {
 #ifdef WX_PLATFORM_WINDOWS
 #   include <stdio.h>
 #   include <stdlib.h>
-#   define XPRINT(_FMT, ...) printf((_FMT), (__VA_ARGS__))
+#   define XPRINT(_FMT, ...) printf(_FMT, ##__VA_ARGS__)
 #   define XMALLOC(_SIZE) malloc((_SIZE))
 #   define XCALLOC(_N, _SIZE) calloc((_N), (_SIZE))
 #   define XREALLOC(_T, _PTR, _N, _SIZE) ((_T)*)realloc((_PTR), ((_N) * (_SIZE)))
@@ -61,7 +61,7 @@ extern "C" {
 #elif defined(WX_PLATFORM_LINUX)
 #   include <stdio.h>
 #   include <stdlib.h>
-#   define XPRINT(_FMT, ...) printf((_FMT), (__VA_ARGS__))
+#   define XPRINT(_FMT, ...) printf((_FMT), ##__VA_ARGS__)
 #   define XMALLOC(_T, _SIZE) (_T*)malloc((_SIZE))
 #   define XCALLOC(_T, _N, _SIZE) (_T*)calloc((_N), (_SIZE))
 #   define XREALLOC(_T, _PTR, _N, _SIZE) ((_T)*)realloc((_PTR), ((_N) * (_SIZE)))
@@ -73,9 +73,9 @@ extern "C" {
 #elif defined(WX_PLATFORM_MAC)
 #   include <stdio.h>
 #   include <stdlib.h>
-#   define XPRINT(_FMT, ...) printf((_FMT), (__VA_ARGS__))
-#   define XMALLOC(_SIZE) malloc((_SIZE))
-#   define XCALLOC(_N, _SIZE) calloc((_N), (_SIZE))
+#   define XPRINT(_FMT, ...) printf(_FMT, ##__VA_ARGS__)
+#   define XMALLOC(_T, _SIZE) (_T*)malloc((_SIZE))
+#   define XCALLOC(_T, _N, _SIZE) (_T*)calloc((_N), (_SIZE))
 #   define XREALLOC(_T, _PTR, _N, _SIZE) ((_T)*)realloc((_PTR), ((_N) * (_SIZE)))
 #   define XFREE(_PTR) free((_PTR))
 #   define XMALLOC_ARRAY(_T, _N) ((_T)*)malloc(sizeof((_T)) * (_N))
@@ -91,7 +91,7 @@ extern "C" {
             This macro prints formatted output to the standard output.
     @param ... The format string followed by the variables to format.
 */
-#   define WXPRINT(_FMT, ...) XPRINT((_FMT), (__VA_ARGS__))
+#   define WXPRINT(_FMT, ...) XPRINT(_FMT, ##__VA_ARGS__)
 /**
     @brief Platform-specific memory allocation macro.
             Allocates a block of memory of specified _SIZE.
