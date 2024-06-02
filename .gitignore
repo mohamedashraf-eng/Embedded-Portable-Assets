@@ -1,0 +1,7 @@
+.clang-format
+.vscode/
+
+tools/build/CMake/Build/
+tools/build/CMake/Test/
+tools/build/CMake/output
+tools/build/IDE/output
