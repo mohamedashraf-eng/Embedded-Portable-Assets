@@ -43,7 +43,7 @@
 #define LOG_ERROR 1
 #define LOG_WARN 2
 #define LOG_CRITICAL 3
-#define LOG__(LLEVEL, STR_) __LinkedListsLog(LLEVEL, (__CONST WX_U8P)STR_)
+#define LOG__(LLEVEL, STR_) __LinkedListsLog(LLEVEL, (_WX_CONST WX_U8P)STR_)
 #else
 #define LOG__(LLEVEL, STR_)
 #endif
@@ -124,13 +124,13 @@ struct Wx_Static_Stack {
  * @brief Stack Pool (Statically)
  *
  */
-__STATIC Wx_Static_Stack_t g_Spool[PHYSICAL_STACK_POOL_SIZE(STACK_POOL_SIZE)];
+_WX_STATIC Wx_Static_Stack_t g_Spool[PHYSICAL_STACK_POOL_SIZE(STACK_POOL_SIZE)];
 
 /**
  * @brief
  *
  */
-__STATIC WX_U16 g_Spool_counter = 0;
+_WX_STATIC WX_U16 g_Spool_counter = 0;
 
 /**
  * ===============================================================================================
@@ -144,9 +144,9 @@ __STATIC WX_U16 g_Spool_counter = 0;
  *
  * @param log_level
  * @param string
- * @return __NORETURN
+ * @return _WX_NORETURN
  */
-__FORCE_INLINE __STATIC __NORETURN __StackLog(WX_U8 log_level, __CONST WX_U8 *string);
+_WX_FORCE_INLINE _WX_STATIC _WX_NORETURN __StackLog(WX_U8 log_level, _WX_CONST WX_U8 *string);
 #endif
 
 /**
@@ -156,7 +156,7 @@ __FORCE_INLINE __STATIC __NORETURN __StackLog(WX_U8 log_level, __CONST WX_U8 *st
  */
 
 #if defined(WIN32) || defined(__GNUC__)
-__NORETURN __StackLog(WX_U8 log_level, __CONST WX_U8 *string) {
+_WX_NORETURN __StackLog(WX_U8 log_level, _WX_CONST WX_U8 *string) {
     switch (log_level) {
     case LOG_INFO:
         fprintf(stdout, "STACK - [INFO]: %s\n", string);
@@ -189,7 +189,7 @@ __NORETURN __StackLog(WX_U8 log_level, __CONST WX_U8 *string) {
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
 Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetInstance(Wx_Static_Stack_t **EmptyInstance) {
-    if ((__NULL == EmptyInstance) || (__NULL != (*EmptyInstance))) {
+    if ((_WX_NULL == EmptyInstance) || (_WX_NULL != (*EmptyInstance))) {
         return WX_E_STACK_INVALID_ARG;
     }
 
@@ -202,7 +202,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetInstance(Wx_Static_Stack_t **Em
 
     WX_U16 i = 0;
     for (i = 0; (i < PHYSICAL_NODE_POOL_SIZE(NODE_POOL_SIZE)); ++i) {
-        (*EmptyInstance)->npool_[i].data_ = __NULL;
+        (*EmptyInstance)->npool_[i].data_ = _WX_NULL;
     }
 
     (*EmptyInstance)->size_ = 0;
@@ -222,7 +222,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetInstance(Wx_Static_Stack_t **Em
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
 Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Push(Wx_Static_Stack_t **Instance, void *Data) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_STACK_INVALID_ARG;
     }
 
@@ -245,7 +245,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Push(Wx_Static_Stack_t **Instance,
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
 Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Pop(Wx_Static_Stack_t **Instance, void **Data) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_STACK_INVALID_ARG;
     }
 
@@ -257,7 +257,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Pop(Wx_Static_Stack_t **Instance, 
     (*Instance)->top_--;
 
     *Data = (*Instance)->npool_[(*Instance)->top_].data_;
-    (*Instance)->npool_[(*Instance)->top_].data_ = __NULL;
+    (*Instance)->npool_[(*Instance)->top_].data_ = _WX_NULL;
 
     (*Instance)->size_--;
 
@@ -271,9 +271,9 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Pop(Wx_Static_Stack_t **Instance, 
  * @param[out] Data Pointer to store the top Data.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetTop(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetTop(_WX_CONST Wx_Static_Stack_t *Instance,
                                                      void **Data) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_STACK_INVALID_ARG;
     }
 
@@ -289,9 +289,9 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetTop(__CONST Wx_Static_Stack_t *
  * @param[out] Data Pointer to store the bottom Data.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetBottom(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetBottom(_WX_CONST Wx_Static_Stack_t *Instance,
                                                         void **Data) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_STACK_INVALID_ARG;
     }
 
@@ -307,9 +307,9 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetBottom(__CONST Wx_Static_Stack_
  * @param[out] isEmptyFlag Pointer to a WX_BOOLean indicating if the Stack is empty.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsEmpty(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsEmpty(_WX_CONST Wx_Static_Stack_t *Instance,
                                                       WX_BOOL *isEmptyFlag) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_STACK_INVALID_ARG;
     }
 
@@ -325,9 +325,9 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsEmpty(__CONST Wx_Static_Stack_t 
  * @param[out] isFullFlag Pointer to a WX_BOOLean indicating if the Stack is full.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsFull(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsFull(_WX_CONST Wx_Static_Stack_t *Instance,
                                                      WX_BOOL *isFullFlag) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_STACK_INVALID_ARG;
     }
 
@@ -343,9 +343,9 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsFull(__CONST Wx_Static_Stack_t *
  * @param[out] size Pointer to store the size of the Stack.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetSize(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetSize(_WX_CONST Wx_Static_Stack_t *Instance,
                                                       WX_U16P Size) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_STACK_INVALID_ARG;
     }
 
@@ -361,13 +361,13 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetSize(__CONST Wx_Static_Stack_t 
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
 Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Clear(Wx_Static_Stack_t *Instance) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_STACK_INVALID_ARG;
     }
 
     WX_U16 i = 0;
     for (i = 0; (i < Instance->size_); ++i) {
-        Instance->npool_[i].data_ = __NULL;
+        Instance->npool_[i].data_ = _WX_NULL;
     }
 
     Instance->size_ = 0;
@@ -382,7 +382,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Clear(Wx_Static_Stack_t *Instance)
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
 Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Destroy(Wx_Static_Stack_t **Instance) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_STACK_INVALID_ARG;
     }
 

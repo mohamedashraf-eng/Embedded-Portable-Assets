@@ -43,7 +43,7 @@
 #define LOG_ERROR 1
 #define LOG_WARN 2
 #define LOG_CRITICAL 3
-#define LOG__(LLEVEL, STR_) __LinkedListsLog(LLEVEL, (__CONST WX_U8P)STR_)
+#define LOG__(LLEVEL, STR_) __LinkedListsLog(LLEVEL, (_WX_CONST WX_U8P)STR_)
 #else
 #define LOG__(LLEVEL, STR_)
 #endif
@@ -124,13 +124,13 @@ struct Wx_Static_Queue {
  * @brief Queue Pool (Statically)
  *
  */
-__STATIC Wx_Static_Queue_t g_Qpool[PHYSICAL_QUEUE_POOL_SIZE(QUEUE_POOL_SIZE)];
+_WX_STATIC Wx_Static_Queue_t g_Qpool[PHYSICAL_QUEUE_POOL_SIZE(QUEUE_POOL_SIZE)];
 
 /**
  * @brief
  *
  */
-__STATIC WX_U16 g_Qpool_counter = 0;
+_WX_STATIC WX_U16 g_Qpool_counter = 0;
 
 /**
  * ===============================================================================================
@@ -144,9 +144,9 @@ __STATIC WX_U16 g_Qpool_counter = 0;
  *
  * @param log_level
  * @param string
- * @return __NORETURN
+ * @return _WX_NORETURN
  */
-__FORCE_INLINE __STATIC __NORETURN __QueueLog(WX_U8 log_level, __CONST WX_U8 *string);
+_WX_FORCE_INLINE _WX_STATIC _WX_NORETURN __QueueLog(WX_U8 log_level, _WX_CONST WX_U8 *string);
 #endif
 
 /**
@@ -156,7 +156,7 @@ __FORCE_INLINE __STATIC __NORETURN __QueueLog(WX_U8 log_level, __CONST WX_U8 *st
  */
 
 #if defined(WIN32) || defined(__GNUC__)
-__NORETURN __QueueLog(WX_U8 log_level, __CONST WX_U8 *string) {
+_WX_NORETURN __QueueLog(WX_U8 log_level, _WX_CONST WX_U8 *string) {
     switch (log_level) {
     case LOG_INFO:
         fprintf(stdout, "QUEUE - [INFO]: %s\n", string);
@@ -190,7 +190,7 @@ __NORETURN __QueueLog(WX_U8 log_level, __CONST WX_U8 *string) {
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
 Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetInstance(Wx_Static_Queue_t **EmptyInstance) {
-    if ((__NULL == EmptyInstance) || (__NULL != (*EmptyInstance))) {
+    if ((_WX_NULL == EmptyInstance) || (_WX_NULL != (*EmptyInstance))) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
@@ -203,7 +203,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetInstance(Wx_Static_Queue_t **Em
 
     WX_U16 i = 0;
     for (i = 0; (i < PHYSICAL_NODE_POOL_SIZE(NODE_POOL_SIZE)); ++i) {
-        (*EmptyInstance)->npool_[i].data_ = __NULL;
+        (*EmptyInstance)->npool_[i].data_ = _WX_NULL;
     }
 
     (*EmptyInstance)->size_ = 0;
@@ -222,7 +222,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetInstance(Wx_Static_Queue_t **Em
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
 Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Enqueue(Wx_Static_Queue_t **Instance, void *Data) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
@@ -244,7 +244,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Enqueue(Wx_Static_Queue_t **Instan
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
 Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Dequeue(Wx_Static_Queue_t **Instance, void **Data) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
@@ -253,7 +253,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Dequeue(Wx_Static_Queue_t **Instan
     }
 
     *Data = (*Instance)->npool_[(*Instance)->front_].data_;
-    (*Instance)->npool_[(*Instance)->front_].data_ = __NULL;
+    (*Instance)->npool_[(*Instance)->front_].data_ = _WX_NULL;
 
     (*Instance)->front_ = ((*Instance)->front_ + 1) % PHYSICAL_NODE_POOL_SIZE(NODE_POOL_SIZE);
     (*Instance)->size_--;
@@ -268,9 +268,9 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Dequeue(Wx_Static_Queue_t **Instan
  * @param Data Pointer to the data where the front element will be stored.
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetFront(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetFront(_WX_CONST Wx_Static_Queue_t *Instance,
                                                        void **Data) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
@@ -286,9 +286,9 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetFront(__CONST Wx_Static_Queue_t
  * @param Data Pointer to the data where the rear element will be stored.
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetRear(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetRear(_WX_CONST Wx_Static_Queue_t *Instance,
                                                       void **Data) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
@@ -304,9 +304,9 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetRear(__CONST Wx_Static_Queue_t 
  * @param EmptyFlag Boolean flag indicating if the queue is empty.
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsEmpty(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsEmpty(_WX_CONST Wx_Static_Queue_t *Instance,
                                                       WX_BOOL *EmptyFlag) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
@@ -322,9 +322,9 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsEmpty(__CONST Wx_Static_Queue_t 
  * @param EmptyFlag Boolean flag indicating if the queue is full.
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsFull(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsFull(_WX_CONST Wx_Static_Queue_t *Instance,
                                                      WX_BOOL *FullFlag) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
@@ -340,9 +340,9 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsFull(__CONST Wx_Static_Queue_t *
  * @param FullFlag
  * @return Wx_Static_En_QueueErrorCode_t
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetSize(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetSize(_WX_CONST Wx_Static_Queue_t *Instance,
                                                       WX_U16P Size) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
@@ -358,13 +358,13 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetSize(__CONST Wx_Static_Queue_t 
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
 Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Clear(Wx_Static_Queue_t *Instance) {
-    if ((__NULL == Instance)) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 
     WX_U16 i = 0;
     for (i = 0; (i < Instance->size_); ++i) {
-        Instance->npool_[i].data_ = __NULL;
+        Instance->npool_[i].data_ = _WX_NULL;
     }
 
     Instance->size_ = 0;
@@ -381,7 +381,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Clear(Wx_Static_Queue_t *Instance)
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
 Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Destroy(Wx_Static_Queue_t **Instance) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_QUEUE_INVALID_ARG;
     }
 

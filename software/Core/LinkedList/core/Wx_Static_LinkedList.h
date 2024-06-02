@@ -154,7 +154,7 @@ Wx_Static_DLinkedList_GetInstance(Wx_Static_DLinkedList_t **EmptyInstance);
  */
 
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_InsertFront(Wx_Static_DLinkedList_t **Instance, __CONST void *Data);
+Wx_Static_DLinkedList_InsertFront(Wx_Static_DLinkedList_t **Instance, _WX_CONST void *Data);
 
 /**
  * @brief Function to Remove the First Element from the Linked List
@@ -172,7 +172,7 @@ Wx_Static_DLinkedList_RemoveFront(Wx_Static_DLinkedList_t **Instance, void **Dat
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_InsertBack(Wx_Static_DLinkedList_t **Instance, __CONST void *Data);
+Wx_Static_DLinkedList_InsertBack(Wx_Static_DLinkedList_t **Instance, _WX_CONST void *Data);
 
 /**
  * @brief Function to Remove the Last Element from the Linked List
@@ -191,7 +191,7 @@ Wx_Static_DLinkedList_RemoveBack(Wx_Static_DLinkedList_t **Instance, void **Data
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_GetFront(__CONST Wx_Static_DLinkedList_t *Instance, void **Data);
+Wx_Static_DLinkedList_GetFront(_WX_CONST Wx_Static_DLinkedList_t *Instance, void **Data);
 
 /**
  * @brief Function to Access the Data of the Last Element in the Linked List
@@ -201,7 +201,7 @@ Wx_Static_DLinkedList_GetFront(__CONST Wx_Static_DLinkedList_t *Instance, void *
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_GetBack(__CONST Wx_Static_DLinkedList_t *Instance, void **Data);
+Wx_Static_DLinkedList_GetBack(_WX_CONST Wx_Static_DLinkedList_t *Instance, void **Data);
 
 /**
  * @brief Function to Get the Size of the Linked List
@@ -211,7 +211,7 @@ Wx_Static_DLinkedList_GetBack(__CONST Wx_Static_DLinkedList_t *Instance, void **
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_GetSize(__CONST Wx_Static_DLinkedList_t *Instance, WX_U32P Size);
+Wx_Static_DLinkedList_GetSize(_WX_CONST Wx_Static_DLinkedList_t *Instance, WX_U32P Size);
 
 /**
  * @brief Function to Check if the Linked List is Empty
@@ -221,7 +221,7 @@ Wx_Static_DLinkedList_GetSize(__CONST Wx_Static_DLinkedList_t *Instance, WX_U32P
  */
 
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_IsEmpty(__CONST Wx_Static_DLinkedList_t *Instance, WX_BOOL *IsEmptyFlag);
+Wx_Static_DLinkedList_IsEmpty(_WX_CONST Wx_Static_DLinkedList_t *Instance, WX_BOOL *IsEmptyFlag);
 
 /**
  * @brief Function to Remove All Elements from the Linked List
@@ -262,16 +262,16 @@ Wx_Static_DLinkedList_Destroy(Wx_Static_DLinkedList_t **Instance);
     Wx_Static_DLinkedList_RemoveFront((Wx_Static_DLinkedList_t **)(&(wx_list_ptr)),                \
                                       (void **)(&(element)))
 #define WX_DLIST_GET_FRONT(wx_list_ptr, element)                                                   \
-    Wx_Static_DLinkedList_GetFront((__CONST Wx_Static_DLinkedList_t *)(wx_list_ptr),               \
+    Wx_Static_DLinkedList_GetFront((_WX_CONST Wx_Static_DLinkedList_t *)(wx_list_ptr),               \
                                    (void **)(&(element)))
 #define WX_DLIST_GET_TAIL(wx_list_ptr, element)                                                    \
-    Wx_Static_DLinkedList_GetTail((__CONST Wx_Static_DLinkedList_t *)(wx_list_ptr),                \
+    Wx_Static_DLinkedList_GetTail((_WX_CONST Wx_Static_DLinkedList_t *)(wx_list_ptr),                \
                                   (void **)(&(element)))
 #define WX_DLIST_IS_EMPTY(wx_list_ptr, is_empty)                                                   \
-    Wx_Static_DLinkedList_IsEmpty((__CONST Wx_Static_DLinkedList_t *)(wx_list_ptr),                \
+    Wx_Static_DLinkedList_IsEmpty((_WX_CONST Wx_Static_DLinkedList_t *)(wx_list_ptr),                \
                                   (WX_BOOL *)(&(is_empty)))
 #define WX_DLIST_GET_SIZE(wx_list_ptr, size)                                                       \
-    Wx_Static_DLinkedList_GetSize((__CONST Wx_Static_DLinkedList_t *)(wx_list_ptr),                \
+    Wx_Static_DLinkedList_GetSize((_WX_CONST Wx_Static_DLinkedList_t *)(wx_list_ptr),                \
                                   (WX_U16 *)(&(size)))
 #define WX_DLIST_CLEAR(wx_list_ptr)                                                                \
     Wx_Static_DLinkedList_Clear((Wx_Static_DLinkedList_t *)(wx_list_ptr))

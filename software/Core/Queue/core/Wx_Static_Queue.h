@@ -163,7 +163,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Dequeue(Wx_Static_Queue_t **Instan
  * @param Data Pointer to the data where the front element will be stored.
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetFront(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetFront(_WX_CONST Wx_Static_Queue_t *Instance,
                                                        void **Data);
 
 /**
@@ -173,7 +173,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetFront(__CONST Wx_Static_Queue_t
  * @param Data Pointer to the data where the rear element will be stored.
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetRear(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetRear(_WX_CONST Wx_Static_Queue_t *Instance,
                                                       void **Data);
 
 /**
@@ -183,7 +183,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetRear(__CONST Wx_Static_Queue_t 
  * @param EmptyFlag Boolean flag indicating if the queue is empty.
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsEmpty(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsEmpty(_WX_CONST Wx_Static_Queue_t *Instance,
                                                       WX_BOOL *EmptyFlag);
 
 /**
@@ -193,7 +193,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsEmpty(__CONST Wx_Static_Queue_t 
  * @param EmptyFlag Boolean flag indicating if the queue is full.
  * @return Wx_Static_En_QueueErrorCode_t Error code.
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsFull(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsFull(_WX_CONST Wx_Static_Queue_t *Instance,
                                                      WX_BOOL *FullFlag);
 
 /**
@@ -203,7 +203,7 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_IsFull(__CONST Wx_Static_Queue_t *
  * @param FullFlag
  * @return Wx_Static_En_QueueErrorCode_t
  */
-Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetSize(__CONST Wx_Static_Queue_t *Instance,
+Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_GetSize(_WX_CONST Wx_Static_Queue_t *Instance,
                                                       WX_U16P Size);
 
 /**
@@ -243,15 +243,15 @@ Wx_Static_En_QueueErrorCode_t Wx_Static_Queue_Destroy(Wx_Static_Queue_t **Instan
 #define WX_QUEUE_DEQUEUE(wx_queue_ptr, element)                                                    \
     Wx_Static_Queue_Dequeue((Wx_Static_Queue_t **)(&(wx_queue_ptr)), (void **)(&(element)))
 #define WX_QUEUE_GET_FRONT(wx_queue_ptr, element)                                                  \
-    Wx_Static_Queue_GetFront((__CONST Wx_Static_Queue_t *)(wx_queue_ptr), (void **)(&(element)))
+    Wx_Static_Queue_GetFront((_WX_CONST Wx_Static_Queue_t *)(wx_queue_ptr), (void **)(&(element)))
 #define WX_QUEUE_GET_REAR(wx_queue_ptr, element)                                                   \
-    Wx_Static_Queue_GetRear((__CONST Wx_Static_Queue_t *)(wx_queue_ptr), (void **)(&(element)))
+    Wx_Static_Queue_GetRear((_WX_CONST Wx_Static_Queue_t *)(wx_queue_ptr), (void **)(&(element)))
 #define WX_QUEUE_IS_EMPTY(wx_queue_ptr, is_empty)                                                  \
-    Wx_Static_Queue_IsEmpty((__CONST Wx_Static_Queue_t *)(wx_queue_ptr), (WX_BOOL *)(&(is_empty)))
+    Wx_Static_Queue_IsEmpty((_WX_CONST Wx_Static_Queue_t *)(wx_queue_ptr), (WX_BOOL *)(&(is_empty)))
 #define WX_QUEUE_IS_FULL(wx_queue_ptr, is_full)                                                    \
-    Wx_Static_Queue_IsFull((__CONST Wx_Static_Queue_t *)(wx_queue_ptr), (WX_BOOL *)(&(is_full)))
+    Wx_Static_Queue_IsFull((_WX_CONST Wx_Static_Queue_t *)(wx_queue_ptr), (WX_BOOL *)(&(is_full)))
 #define WX_QUEUE_GET_SIZE(wx_queue_ptr, size)                                                      \
-    Wx_Static_Queue_GetSize((__CONST Wx_Static_Queue_t *)(wx_queue_ptr), (WX_U16 *)(&(size)))
+    Wx_Static_Queue_GetSize((_WX_CONST Wx_Static_Queue_t *)(wx_queue_ptr), (WX_U16 *)(&(size)))
 #define WX_QUEUE_CLEAR(wx_queue_ptr) Wx_Static_Queue_Clear((Wx_Static_Queue_t *)(wx_queue_ptr))
 #define WX_QUEUE_DTOR(wx_queue_ptr) Wx_Static_Queue_Destroy((Wx_Static_Queue_t **)(&(wx_queue_ptr)))
 /**     @} */

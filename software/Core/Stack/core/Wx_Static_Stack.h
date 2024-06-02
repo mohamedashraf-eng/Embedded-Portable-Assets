@@ -164,7 +164,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Pop(Wx_Static_Stack_t **Instance, 
  * @param[out] Data Pointer to store the top Data.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetTop(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetTop(_WX_CONST Wx_Static_Stack_t *Instance,
                                                      void **Data);
 
 /**
@@ -174,7 +174,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetTop(__CONST Wx_Static_Stack_t *
  * @param[out] Data Pointer to store the bottom Data.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetBottom(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetBottom(_WX_CONST Wx_Static_Stack_t *Instance,
                                                         void **Data);
 
 /**
@@ -184,7 +184,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetBottom(__CONST Wx_Static_Stack_
  * @param[out] isEmptyFlag Pointer to a WX_BOOLean indicating if the Stack is empty.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsEmpty(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsEmpty(_WX_CONST Wx_Static_Stack_t *Instance,
                                                       WX_BOOL *isEmptyFlag);
 
 /**
@@ -194,7 +194,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsEmpty(__CONST Wx_Static_Stack_t 
  * @param[out] isFullFlag Pointer to a WX_BOOLean indicating if the Stack is full.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsFull(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsFull(_WX_CONST Wx_Static_Stack_t *Instance,
                                                      WX_BOOL *isFullFlag);
 
 /**
@@ -204,7 +204,7 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_IsFull(__CONST Wx_Static_Stack_t *
  * @param[out] size Pointer to store the size of the Stack.
  * @return Wx_Static_En_StackErrorCode_t Error code.
  */
-Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetSize(__CONST Wx_Static_Stack_t *Instance,
+Wx_Static_En_StackErrorCode_t Wx_Static_Stack_GetSize(_WX_CONST Wx_Static_Stack_t *Instance,
                                                       WX_U16P Size);
 
 /**
@@ -243,15 +243,15 @@ Wx_Static_En_StackErrorCode_t Wx_Static_Stack_Destroy(Wx_Static_Stack_t **Instan
 #define WX_STACK_POP(stack_ptr, element)                                                           \
     Wx_Static_Stack_Pop((Wx_Static_Stack_t **)(&(stack_ptr)), (void **)(&(element)))
 #define WX_STACK_GET_TOP(stack_ptr, element)                                                       \
-    Wx_Static_Stack_GetTop((__CONST Wx_Static_Stack_t *)(stack_ptr), (void **)(&(element)))
+    Wx_Static_Stack_GetTop((_WX_CONST Wx_Static_Stack_t *)(stack_ptr), (void **)(&(element)))
 #define WX_STACK_GET_BOTTOM(stack_ptr, element)                                                    \
-    Wx_Static_Stack_GetBottom((__CONST Wx_Static_Stack_t *)(stack_ptr), (void **)(&(element)))
+    Wx_Static_Stack_GetBottom((_WX_CONST Wx_Static_Stack_t *)(stack_ptr), (void **)(&(element)))
 #define WX_STACK_IS_EMPTY(stack_ptr, is_empty)                                                     \
-    Wx_Static_Stack_IsEmpty((__CONST Wx_Static_Stack_t *)(stack_ptr), (WX_BOOL *)(&(is_empty)))
+    Wx_Static_Stack_IsEmpty((_WX_CONST Wx_Static_Stack_t *)(stack_ptr), (WX_BOOL *)(&(is_empty)))
 #define WX_STACK_IS_FULL(stack_ptr, is_full)                                                       \
-    Wx_Static_Stack_IsFull((__CONST Wx_Static_Stack_t *)(stack_ptr), (WX_BOOL *)(&(is_full)))
+    Wx_Static_Stack_IsFull((_WX_CONST Wx_Static_Stack_t *)(stack_ptr), (WX_BOOL *)(&(is_full)))
 #define WX_STACK_GET_SIZE(stack_ptr, size)                                                         \
-    Wx_Static_Stack_GetSize((__CONST Wx_Static_Stack_t *)(stack_ptr), (WX_U16 *)(&(size)))
+    Wx_Static_Stack_GetSize((_WX_CONST Wx_Static_Stack_t *)(stack_ptr), (WX_U16 *)(&(size)))
 #define WX_STACK_CLEAR(stack_ptr) Wx_Static_Stack_Clear((Wx_Static_Stack_t *)(stack_ptr))
 #define WX_STACK_DTOR(stack_ptr) Wx_Static_Stack_Destroy((Wx_Static_Stack_t **)(&(stack_ptr)))
 /**     @} */

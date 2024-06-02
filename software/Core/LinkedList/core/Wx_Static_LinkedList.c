@@ -43,7 +43,7 @@
 #define LOG_ERROR 1
 #define LOG_WARN 2
 #define LOG_CRITICAL 3
-#define LOG__(LLEVEL, STR_) __LinkedListsLog(LLEVEL, (__CONST WX_U8P)STR_)
+#define LOG__(LLEVEL, STR_) __LinkedListsLog(LLEVEL, (_WX_CONST WX_U8P)STR_)
 #else
 #define LOG__(LLEVEL, STR_)
 #endif
@@ -134,12 +134,12 @@ struct Wx_Static_DLinkedList {
  * @brief Dynamic Linked List Pool (Statically)
  *
  */
-__STATIC Wx_Static_DLinkedList_t g_Dpool[PHYSICAL_LIST_POOL_SIZE(LIST_POOL_SIZE)];
+_WX_STATIC Wx_Static_DLinkedList_t g_Dpool[PHYSICAL_LIST_POOL_SIZE(LIST_POOL_SIZE)];
 /**
  * @brief
  *
  */
-__STATIC WX_U16 g_Dpool_counter = 0;
+_WX_STATIC WX_U16 g_Dpool_counter = 0;
 
 /**
  * ===============================================================================================
@@ -153,10 +153,10 @@ __STATIC WX_U16 g_Dpool_counter = 0;
  *
  * @param log_level
  * @param string
- * @return __NORETURN
+ * @return _WX_NORETURN
  */
-__FORCE_INLINE __STATIC 
-__NORETURN __LinkedListsLog(WX_U8 log_level, __CONST WX_U8 *string);
+_WX_FORCE_INLINE _WX_STATIC 
+_WX_NORETURN __LinkedListsLog(WX_U8 log_level, _WX_CONST WX_U8 *string);
 #endif
 
 /**
@@ -166,7 +166,7 @@ __NORETURN __LinkedListsLog(WX_U8 log_level, __CONST WX_U8 *string);
  */
 
 #if defined(WIN32) || defined(__GNUC__)
-__NORETURN __LinkedListsLog(WX_U8 log_level, __CONST WX_U8 *string) {
+_WX_NORETURN __LinkedListsLog(WX_U8 log_level, _WX_CONST WX_U8 *string) {
     switch (log_level) {
     case LOG_INFO:
         fprintf(stdout, "LinkedList - [INFO]: %s\n", string);
@@ -202,7 +202,7 @@ __NORETURN __LinkedListsLog(WX_U8 log_level, __CONST WX_U8 *string) {
  */
 Wx_Static_En_LinkedListErrorCode_t
 Wx_Static_DLinkedList_GetInstance(Wx_Static_DLinkedList_t **EmptyInstance) {
-    if ((__NULL == EmptyInstance) || (__NULL != (*EmptyInstance))) {
+    if ((_WX_NULL == EmptyInstance) || (_WX_NULL != (*EmptyInstance))) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -215,7 +215,7 @@ Wx_Static_DLinkedList_GetInstance(Wx_Static_DLinkedList_t **EmptyInstance) {
 
     WX_U16 i = 0;
     for (i = 0; (i < PHYSICAL_NODE_POOL_SIZE(NODE_POOL_SIZE)); ++i) {
-        (*EmptyInstance)->npool_[i].data_ = __NULL;
+        (*EmptyInstance)->npool_[i].data_ = _WX_NULL;
     }
 
     (*EmptyInstance)->size_ = 0;
@@ -235,8 +235,8 @@ Wx_Static_DLinkedList_GetInstance(Wx_Static_DLinkedList_t **EmptyInstance) {
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_InsertFront(Wx_Static_DLinkedList_t **Instance, __CONST void *Data) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+Wx_Static_DLinkedList_InsertFront(Wx_Static_DLinkedList_t **Instance, _WX_CONST void *Data) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -261,7 +261,7 @@ Wx_Static_DLinkedList_InsertFront(Wx_Static_DLinkedList_t **Instance, __CONST vo
  */
 Wx_Static_En_LinkedListErrorCode_t
 Wx_Static_DLinkedList_RemoveFront(Wx_Static_DLinkedList_t **Instance, void **Data) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -272,7 +272,7 @@ Wx_Static_DLinkedList_RemoveFront(Wx_Static_DLinkedList_t **Instance, void **Dat
     }
 
     *Data = (*Instance)->npool_[(*Instance)->end_].data_;
-    (*Instance)->npool_[(*Instance)->end_].data_ = __NULL;
+    (*Instance)->npool_[(*Instance)->end_].data_ = _WX_NULL;
 
     (*Instance)->end_--;
     (*Instance)->tidx_--;
@@ -288,8 +288,8 @@ Wx_Static_DLinkedList_RemoveFront(Wx_Static_DLinkedList_t **Instance, void **Dat
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_InsertBack(Wx_Static_DLinkedList_t **Instance, __CONST void *Data) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+Wx_Static_DLinkedList_InsertBack(Wx_Static_DLinkedList_t **Instance, _WX_CONST void *Data) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -314,7 +314,7 @@ Wx_Static_DLinkedList_InsertBack(Wx_Static_DLinkedList_t **Instance, __CONST voi
  */
 Wx_Static_En_LinkedListErrorCode_t
 Wx_Static_DLinkedList_RemoveBack(Wx_Static_DLinkedList_t **Instance, void **Data) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -330,8 +330,8 @@ Wx_Static_DLinkedList_RemoveBack(Wx_Static_DLinkedList_t **Instance, void **Data
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_GetFront(__CONST Wx_Static_DLinkedList_t *Instance, void **Data) {
-    if ((__NULL == Instance)) {
+Wx_Static_DLinkedList_GetFront(_WX_CONST Wx_Static_DLinkedList_t *Instance, void **Data) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -348,8 +348,8 @@ Wx_Static_DLinkedList_GetFront(__CONST Wx_Static_DLinkedList_t *Instance, void *
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_GetBack(__CONST Wx_Static_DLinkedList_t *Instance, void **Data) {
-    if ((__NULL == Instance)) {
+Wx_Static_DLinkedList_GetBack(_WX_CONST Wx_Static_DLinkedList_t *Instance, void **Data) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -366,8 +366,8 @@ Wx_Static_DLinkedList_GetBack(__CONST Wx_Static_DLinkedList_t *Instance, void **
  * @return Wx_Static_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_GetSize(__CONST Wx_Static_DLinkedList_t *Instance, WX_U32P Size) {
-    if ((__NULL == Instance)) {
+Wx_Static_DLinkedList_GetSize(_WX_CONST Wx_Static_DLinkedList_t *Instance, WX_U32P Size) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -383,8 +383,8 @@ Wx_Static_DLinkedList_GetSize(__CONST Wx_Static_DLinkedList_t *Instance, WX_U32P
  * @return WX_BOOL
  */
 Wx_Static_En_LinkedListErrorCode_t
-Wx_Static_DLinkedList_IsEmpty(__CONST Wx_Static_DLinkedList_t *Instance, WX_BOOL *IsEmptyFlag) {
-    if ((__NULL == Instance)) {
+Wx_Static_DLinkedList_IsEmpty(_WX_CONST Wx_Static_DLinkedList_t *Instance, WX_BOOL *IsEmptyFlag) {
+    if ((_WX_NULL == Instance)) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
@@ -404,13 +404,13 @@ Wx_Static_DLinkedList_IsEmpty(__CONST Wx_Static_DLinkedList_t *Instance, WX_BOOL
  * @return Wx_En_LinkedListErrorCode_t
  */
 Wx_Static_En_LinkedListErrorCode_t Wx_Static_DLinkedList_Clear(Wx_Static_DLinkedList_t **Instance) {
-    if ((__NULL == Instance) || (__NULL == (*Instance))) {
+    if ((_WX_NULL == Instance) || (_WX_NULL == (*Instance))) {
         return WX_E_LINKEDLIST_INVALID_ARG;
     }
 
     WX_U16 i = 0;
     for (i = 0; i < PHYSICAL_NODE_POOL_SIZE(NODE_POOL_SIZE); ++i) {
-        (*Instance)->npool_[i].data_ = __NULL;
+        (*Instance)->npool_[i].data_ = _WX_NULL;
     }
 
     (*Instance)->size_ = 0;
