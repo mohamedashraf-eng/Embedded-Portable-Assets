@@ -28,17 +28,13 @@
 /*----------------------------------------------------------------------------*/
 #include "Wx_Static_Queue.h"
 
-#if defined(WIN32) || defined(__GNUC__)
-#include <stdio.h>
-#endif
-
 /**
  * ===============================================================================================
  *   > Private Macros
  * ===============================================================================================
  */
 
-#if defined(WIN32) || defined(__GNUC__)
+#if defined(LOG)
 #define LOG_INFO 0
 #define LOG_ERROR 1
 #define LOG_WARN 2
@@ -138,7 +134,7 @@ _WX_STATIC WX_U16 g_Qpool_counter = 0;
  * ===============================================================================================
  */
 
-#if defined(WIN32) || defined(__GNUC__)
+#if defined(LOG)
 /**
  * @brief Function to log the
  *
@@ -155,20 +151,20 @@ _WX_FORCE_INLINE _WX_STATIC _WX_NORETURN __QueueLog(WX_U8 log_level, _WX_CONST W
  * ===============================================================================================
  */
 
-#if defined(WIN32) || defined(__GNUC__)
+#if defined(LOG)
 _WX_NORETURN __QueueLog(WX_U8 log_level, _WX_CONST WX_U8 *string) {
     switch (log_level) {
     case LOG_INFO:
-        fprintf(stdout, "QUEUE - [INFO]: %s\n", string);
+        WXPRINT("QUEUE - [INFO]: %s\n", string);
         break;
     case LOG_ERROR:
-        fprintf(stderr, "QUEUE - [ERROR]: %s\n", string);
+        WXPRINT("QUEUE - [ERROR]: %s\n", string);
         break;
     case LOG_WARN:
-        fprintf(stdout, "QUEUE - [WARNING]: %s\n", string);
+        WXPRINT("QUEUE - [WARNING]: %s\n", string);
         break;
     case LOG_CRITICAL:
-        fprintf(stderr, "QUEUE - [CRITICAL]: %s\n", string);
+        WXPRINT("QUEUE - [CRITICAL]: %s\n", string);
         break;
     default:
         break;

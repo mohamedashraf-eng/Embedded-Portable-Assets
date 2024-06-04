@@ -28,22 +28,18 @@
 /*----------------------------------------------------------------------------*/
 #include "Wx_Static_Stack.h"
 
-#if defined(WIN32) || defined(__GNUC__)
-#include <stdio.h>
-#endif
-
 /**
  * ===============================================================================================
  *   > Private Macros
  * ===============================================================================================
  */
 
-#if defined(WIN32) || defined(__GNUC__)
+#if defined(LOG)
 #define LOG_INFO 0
 #define LOG_ERROR 1
 #define LOG_WARN 2
 #define LOG_CRITICAL 3
-#define LOG__(LLEVEL, STR_) __LinkedListsLog(LLEVEL, (_WX_CONST WX_U8P)STR_)
+#define LOG__(LLEVEL, STR_) __StackLog(LLEVEL, (_WX_CONST WX_U8P)STR_)
 #else
 #define LOG__(LLEVEL, STR_)
 #endif
@@ -138,7 +134,7 @@ _WX_STATIC WX_U16 g_Spool_counter = 0;
  * ===============================================================================================
  */
 
-#if defined(WIN32) || defined(__GNUC__)
+#if defined(LOG)
 /**
  * @brief Function to log the
  *
@@ -155,20 +151,20 @@ _WX_FORCE_INLINE _WX_STATIC _WX_NORETURN __StackLog(WX_U8 log_level, _WX_CONST W
  * ===============================================================================================
  */
 
-#if defined(WIN32) || defined(__GNUC__)
+#if defined(LOG)
 _WX_NORETURN __StackLog(WX_U8 log_level, _WX_CONST WX_U8 *string) {
     switch (log_level) {
     case LOG_INFO:
-        fprintf(stdout, "STACK - [INFO]: %s\n", string);
+        WXPRINT("STACK - [INFO]: %s\n", string);
         break;
     case LOG_ERROR:
-        fprintf(stderr, "STACK - [ERROR]: %s\n", string);
+        WXPRINT("STACK - [ERROR]: %s\n", string);
         break;
     case LOG_WARN:
-        fprintf(stdout, "STACK - [WARNING]: %s\n", string);
+        WXPRINT("STACK - [WARNING]: %s\n", string);
         break;
     case LOG_CRITICAL:
-        fprintf(stderr, "STACK - [CRITICAL]: %s\n", string);
+        WXPRINT("STACK - [CRITICAL]: %s\n", string);
         break;
     default:
         break;

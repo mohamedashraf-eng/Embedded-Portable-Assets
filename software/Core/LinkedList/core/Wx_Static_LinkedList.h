@@ -46,7 +46,7 @@ extern "C" {
  * @brief Initialize a doubly linked list.
  * @param Name_ Name of the doubly linked list.
  */
-#define Wx_Static_DLinkedList_DeclareInstance_(Name_) Wx_Static_DLinkedList_t *Name_ = NULL
+#define Wx_Static_DLinkedList_DeclareInstance_(Name_) Wx_Static_DLinkedList_t *Name_ = _WX_NULL
 
 /**
  * @brief Get the data from a pointer of a specified type.
