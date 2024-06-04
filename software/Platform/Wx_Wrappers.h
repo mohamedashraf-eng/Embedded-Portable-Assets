@@ -49,13 +49,13 @@ extern "C" {
 #ifdef WX_PLATFORM_WINDOWS
 #   include <stdio.h>
 #   include <stdlib.h>
-#   define XPRINT(_FMT, ...) printf(_FMT, ##__VA_ARGS__)
-#   define XMALLOC(_SIZE) malloc((_SIZE))
-#   define XCALLOC(_N, _SIZE) calloc((_N), (_SIZE))
-#   define XREALLOC(_T, _PTR, _N, _SIZE) ((_T)*)realloc((_PTR), ((_N) * (_SIZE)))
+#   define XPRINT(_FMT, ...) printf((_FMT), ##__VA_ARGS__)
+#   define XMALLOC(_T, _SIZE) (_T*)malloc((_SIZE))
+#   define XCALLOC(_T, _N, _SIZE) (_T*)calloc((_N), (_SIZE))
+#   define XREALLOC(_T, _PTR, _N, _SIZE) (_T*)realloc((_PTR), ((_N) * (_SIZE)))
 #   define XFREE(_PTR) free((_PTR))
-#   define XMALLOC_ARRAY(_T, _N) ((_T)*)malloc(sizeof((_T)) * (_N))
-#   define XCALLOC_ARRAY(_T, _N) ((_T)*)calloc((_N), sizeof((_T)))
+#   define XMALLOC_ARRAY(_T, _N) (_T*)malloc(sizeof(_T) * (_N))
+#   define XCALLOC_ARRAY(_T, _N) (_T*)calloc((_N), sizeof(_T))
 #   define XFREE_ARRAY(_PTR) free((_PTR))
 
 #elif defined(WX_PLATFORM_LINUX)
@@ -64,22 +64,22 @@ extern "C" {
 #   define XPRINT(_FMT, ...) printf((_FMT), ##__VA_ARGS__)
 #   define XMALLOC(_T, _SIZE) (_T*)malloc((_SIZE))
 #   define XCALLOC(_T, _N, _SIZE) (_T*)calloc((_N), (_SIZE))
-#   define XREALLOC(_T, _PTR, _N, _SIZE) ((_T)*)realloc((_PTR), ((_N) * (_SIZE)))
+#   define XREALLOC(_T, _PTR, _N, _SIZE) (_T*)realloc((_PTR), ((_N) * (_SIZE)))
 #   define XFREE(_PTR) free((_PTR))
-#   define XMALLOC_ARRAY(_T, _N) ((_T)*)malloc(sizeof((_T)) * (_N))
-#   define XCALLOC_ARRAY(_T, _N) ((_T)*)calloc((_N), sizeof((_T)))
+#   define XMALLOC_ARRAY(_T, _N) (_T*)malloc(sizeof(_T) * (_N))
+#   define XCALLOC_ARRAY(_T, _N) (_T*)calloc((_N), sizeof(_T))
 #   define XFREE_ARRAY(_PTR) free((_PTR))
 
 #elif defined(WX_PLATFORM_MAC)
 #   include <stdio.h>
 #   include <stdlib.h>
-#   define XPRINT(_FMT, ...) printf(_FMT, ##__VA_ARGS__)
+#   define XPRINT(_FMT, ...) printf((_FMT), ##__VA_ARGS__)
 #   define XMALLOC(_T, _SIZE) (_T*)malloc((_SIZE))
 #   define XCALLOC(_T, _N, _SIZE) (_T*)calloc((_N), (_SIZE))
-#   define XREALLOC(_T, _PTR, _N, _SIZE) ((_T)*)realloc((_PTR), ((_N) * (_SIZE)))
+#   define XREALLOC(_T, _PTR, _N, _SIZE) (_T*)realloc((_PTR), ((_N) * (_SIZE)))
 #   define XFREE(_PTR) free((_PTR))
-#   define XMALLOC_ARRAY(_T, _N) ((_T)*)malloc(sizeof((_T)) * (_N))
-#   define XCALLOC_ARRAY(_T, _N) ((_T)*)calloc((_N), sizeof((_T)))
+#   define XMALLOC_ARRAY(_T, _N) (_T*)malloc(sizeof(_T) * (_N))
+#   define XCALLOC_ARRAY(_T, _N) (_T*)calloc((_N), sizeof(_T))
 #   define XFREE_ARRAY(_PTR) free((_PTR))
 #else
 #   warning "Unsupported platform!"
@@ -98,7 +98,7 @@ extern "C" {
     @param _SIZE The _SIZE of memory block to allocate.
     @return Pointer to the allocated memory block, or NULL if the allocation fails.
 */
-#   define WXMALLOC(_T, _SIZE) XMALLOC((_T), (_SIZE))
+#   define WXMALLOC(_T, _SIZE) XMALLOC(_T, (_SIZE))
 /**
     @brief Platform-specific contiguous memory allocation macro.
             Allocates memory for an array of elements, initializes to zero.
@@ -106,7 +106,7 @@ extern "C" {
     @param _SIZE Size of each element.
     @return Pointer to the allocated memory block, or NULL if the allocation fails.
 */
-#   define WXCALLOC(_T, _N, _SIZE) XCALLOC((_T), (_N), (_SIZE))
+#   define WXCALLOC(_T, _N, _SIZE) XCALLOC(_T, (_N), (_SIZE))
 /**
     @brief Platform-specific contiguous memory reallocation macro.
             Reallocation of an existant memory.
@@ -114,7 +114,7 @@ extern "C" {
     @param _SIZE Size of each element.
     @return Pointer to the allocated memory block, or NULL if the allocation fails.
 */
-#   define WXREALLOC(_PTR, _T, _N, _SIZE) XREALLOC((_T), (_PTR), (_N), (_SIZE))
+#   define WXREALLOC(_PTR, _T, _N, _SIZE) XREALLOC(_T, (_PTR), (_N), (_SIZE))
 /**
     @brief Platform-specific memory free macro.
             Frees a previously allocated block of memory.
@@ -128,7 +128,7 @@ extern "C" {
     @param _N Number of elements in the array.
     @return Pointer to the allocated memory block, or NULL if the allocation fails.
 */
-#   define WXMALLOC_ARRAY(_T, _N) XMALLOC_ARRAY((_T), (_N))
+#   define WXMALLOC_ARRAY(_T, _N) XMALLOC_ARRAY(_T, (_N))
 /**
     @brief Platform-specific contiguous array allocation macro.
             Allocates memory for an array of specified type and number of elements, initializes to zero.
@@ -136,7 +136,7 @@ extern "C" {
     @param _N Number of elements in the array.
     @return Pointer to the allocated memory block, or NULL if the allocation fails.
 */
-#   define WXCALLOC_ARRAY(_T, _N) XCALLOC_ARRAY((_N), (_T))
+#   define WXCALLOC_ARRAY(_T, _N) XCALLOC_ARRAY(_T, (_N))
 /**
     @brief Platform-specific array free macro.
             Frees a previously allocated block of array memory.
