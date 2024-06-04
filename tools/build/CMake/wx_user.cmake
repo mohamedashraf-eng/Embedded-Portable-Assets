@@ -10,6 +10,8 @@ set( common_platform_includes "${SW_DIR}/Platform" CACHE PATH "Default")
 
 set( core_sw "${SW_DIR}/Core" CACHE PATH "Default")
 
+set( obj_sw "${core_sw}/Obj" CACHE PATH "Default")
+set( node_sw "${core_sw}/Node" CACHE PATH "Default")
 set( linkedlist_sw "${core_sw}/LinkedList" CACHE PATH "Default")
 set( queue_sw "${core_sw}/Queue" CACHE PATH "Default")
 set( stack_sw "${core_sw}/Stack" CACHE PATH "Default")
