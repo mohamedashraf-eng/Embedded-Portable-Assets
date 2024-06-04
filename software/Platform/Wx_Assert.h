@@ -213,7 +213,12 @@ extern "C" {
  */
 _WX_FORCE_NORETURN WX_OnError(
     WX_U8 _WX_CONST * _WX_CONST pcArg_u8cModule, 
-    WX_U32 _WX_CONST Arg_u32cId);
+    WX_U32 _WX_CONST Arg_u32cId) {
+    
+    while(1) {
+        ; /* HALT */
+    }
+}
 
 /** @} */
 
