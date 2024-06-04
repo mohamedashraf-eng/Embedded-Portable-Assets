@@ -76,6 +76,7 @@ extern "C" {
  * @param _MEMBER Name of the member within the struct.
  * @return _TYPE* Pointer to the parent struct.
  */
+#define WX_TYPE_OF typeof
 #define WX_CONTAINER_OF(_PTR, _TYPE, _MEMBER) (__extension__((      \
     _WX_CONST WX_TYPE_OF( ((_TYPE*)0)->_MEMBER ) *__mptr = (_PTR);    \
     (_TYPE*)( (WX_U8*)__mptr - WX_OFFSET_OF(_TYPE, _MEMBER));       \
