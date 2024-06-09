@@ -83,6 +83,14 @@ extern "C" {
 #   define XFREE_ARRAY(_PTR) free((_PTR))
 #else
 #   warning "Unsupported platform!"
+#   define XPRINT(_FMT, ...)
+#   define XMALLOC(_T, _SIZE)
+#   define XCALLOC(_T, _N, _SIZE)
+#   define XREALLOC(_T, _PTR, _N, _SIZE)
+#   define XFREE(_PTR) 
+#   define XMALLOC_ARRAY(_T, _N) 
+#   define XCALLOC_ARRAY(_T, _N) 
+#   define XFREE_ARRAY(_PTR) 
 #endif
 
 #if defined(__WRAPPERS__)
