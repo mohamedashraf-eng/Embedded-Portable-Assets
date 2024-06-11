@@ -38,8 +38,8 @@ extern "C" {
 #include "Wx_Compiler.h"
 #include "Wx_Platform.h"
 #include "Wx_Macros.h"
-#include "Wx_SpecialTypes.h"
 #include "Wx_Wrappers.h"
+#include "Wx_SpecialTypes.h"
 
 /** 
  * @defgroup Compiler Specific Declarations 
