@@ -43,12 +43,12 @@ extern "C" {
 
 /*----------------------------------------------------------------------------*/
 
-#if !defined(WX_ASSERT)
 /**
  * @defgroup PublicMacros Public Macros
  * @{
  */
 
+#if !defined(WX_ASSERT)
 /**
  * @def WX_DEFINE_THIS_MODULE
  * @brief Define the name of the current module.
@@ -102,13 +102,6 @@ extern "C" {
 #define WX_ERROR_ID(_ID) _WX_NULL
 
 #endif /* WX_ASSERT */
-
-/** @} */
-
-/**
- * @defgroup PublicMacros Public Macros
- * @{
- */
 
 /**
  * @def WX_DEFINE_THIS_FILE
