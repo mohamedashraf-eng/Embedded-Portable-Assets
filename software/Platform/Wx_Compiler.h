@@ -64,6 +64,8 @@ extern "C" {
 #    define _WX_FORCE_SIGNAL __attribute__((__signal__))
 #    define _WX_FORCE_SECTION(__SECTION) __attribute__((section(__SECTION)))
 #    define _WX_USED __attribute__((used))
+#    define _WX_ALIGN(n) __attribute__((aligned(n)))
+#    define _WX_PACKED_STRUCT __attribute__((packed))
 #    define _WX_COMPILETIME_ERROR(msg)  __attribute__((__error__(msg)))
 #    define _WX_FORCE_UNUSED  __attribute__((__unused__))
 #    define _WX_MUST_CHECK   __attribute__((__warn_unused_result__))
