@@ -116,7 +116,7 @@ extern "C" {
  * @param _EXPR The expression to be converted to a string.
  * @return char* The string representation of the expression.
  */
-#define _STRING(_EXPR) #_EXPR
+#define _WXSTRING(_EXPR) #_EXPR
 
 /**
  * @brief Convert an expression to a string literal.
@@ -126,7 +126,7 @@ extern "C" {
  * @param _EXPR The expression to be converted to a string.
  * @return char* The string representation of the expression.
  */
-#define STRING(_EXPR) _STRING( (_EXPR) )
+#define WX_STRING(_EXPR) _WXSTRING( (_EXPR) )
 
 /**
  * @brief Function-like macro to get the array dimensions.
