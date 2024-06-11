@@ -64,8 +64,23 @@ typedef union {
     struct {
         WXReg8_t byte_1; /**< Byte 1 */
         WXReg8_t byte_2; /**< Byte 2 */
+    };
+    WX_U16 hword; /**< Full 16-bit access */
+} WXReg16_t;
+
+/** 
+ * @brief 32-bit register structure with access to 8-bit segments and full 32-bit value.
+ */
+typedef union {
+    struct {
+        WXReg8_t byte_1; /**< Byte 1 */
+        WXReg8_t byte_2; /**< Byte 2 */
         WXReg8_t byte_3; /**< Byte 3 */
         WXReg8_t byte_4; /**< Byte 4 */
+    };
+    struct {
+        WXReg16_t hword_1; /**< Hword 1 */
+        WXReg16_t hword_2; /**< Hword 2 */
     };
     WX_U32 word; /**< Full 32-bit access */
 } WXReg32_t;
@@ -91,21 +106,125 @@ typedef union {
     WX_U64 dword; /**< Full 64-bit access */
 } WXReg64_t;
 
-/**
- * @brief 
- * 
+/** 
+ * @brief Placeholder for 128-bit big integer.
  */
-typedef struct {
-
+typedef union {
+    struct {
+        WXReg64_t dword_1; /**< Dword 1 */
+        WXReg64_t dword_2; /**< Dword 2 */
+    };
+    WX_U8 i128_[16]; /**< Full 128-bit access */
 } WXBigInt128_t;
 
-/**
- * @brief 
- * 
+/** 
+ * @brief Placeholder for 256-bit big integer.
  */
-typedef struct {
-
+typedef union {
+    struct {
+        WXBigInt128_t i128_1; /**< I128 1 */
+        WXBigInt128_t i128_2; /**< I128 2 */
+    };
+    WX_U8 i256_[32]; /**< Full 256-bit access */
 } WXBigInt256_t;
+
+/** 
+ * @brief Placeholder for 512-bit big integer.
+ */
+typedef union {
+    struct {
+        WXBigInt256_t i256_1; /**< I128 1 */
+        WXBigInt256_t i256_2; /**< I128 2 */
+    };
+    WX_U8 i512_[32]; /**< Full 512-bit access */
+} WXBigInt512_t;
+
+/** 
+ * @brief Macros for defining register types.
+ */
+#define WX_RU8      WXReg8_t
+#define WX_RU16     WXReg16_t
+#define WX_RU32     WXReg32_t
+#define WX_RU64     WXReg64_t
+
+#define WX_RS8      WXReg8_t
+#define WX_RS16     WXReg16_t
+#define WX_RS32     WXReg32_t
+#define WX_RS64     WXReg64_t
+
+#if defined(__WRAP_PLATFORM_TYPES__)
+
+#   if defined(WX_U8)
+#      undef WX_U8
+#      define WX_U8 WX_RU8
+#   endif /* WX_U8 */
+
+#   if defined(WX_U16)
+#      undef WX_U16
+#      define WX_U16 WX_RU16
+#   endif /* WX_U16 */
+
+#   if defined(WX_U32)
+#      undef WX_U32
+#      define WX_U32 WX_RU32
+#   endif /* WX_U32 */
+
+#   if defined(WX_U64)
+#      undef WX_U64
+#      define WX_U64 WX_RU64
+#   endif /* WX_U64 */
+
+#   if defined(WX_S8)
+#      undef WX_S8
+#      define WX_S8 WX_RS8
+#   endif /* WX_S8 */
+
+#   if defined(WX_S16)
+#      undef WX_S16
+#      define WX_S16 WX_RS16
+#   endif /* WX_S16 */
+
+#   if defined(WX_S32)
+#      undef WX_S32
+#      define WX_S32 WX_RS32
+#   endif /* WX_S32 */
+
+#   if defined(WX_S64)
+#      undef WX_S64
+#      define WX_S64 WX_RS64
+#   endif /* WX_S64 */
+
+#   if defined(WX_U8_L)
+#      undef WX_U8_L
+#      define WX_U8_L WX_RU8
+#   endif /* WX_U8_L */
+
+#   if defined(WX_U16_L)
+#      undef WX_U16_L
+#      define WX_U16_L WX_RU16
+#   endif /* WX_U16_L */
+
+#   if defined(WX_U32_L)
+#      undef WX_U32_L
+#      define WX_U32_L WX_RU32
+#   endif /* WX_U32_L */
+
+#   if defined(WX_S8_F)
+#      undef WX_S8_F
+#      define WX_S8_F WX_RS8
+#   endif /* WX_S8_F */
+
+#   if defined(WX_S16_F)
+#      undef WX_S16_F
+#      define WX_S16_F WX_RS16
+#   endif /* WX_S16_F */
+
+#   if defined(WX_S32_F)
+#      undef WX_S32_F
+#      define WX_S32_F WX_RS32
+#   endif /* WX_S32_F */
+
+#endif /* __WRAP_PLATFORM_TYPES__ */
 
 /** @} */
 
