@@ -13,7 +13,7 @@ set(
 set(
     queue_ut_sources_list
     
-    ${queue_sw}/core/Wx_Static_queue.c
+    ${queue_sw}/core/Wx_Static_Queue.c
 )
 
 set (
