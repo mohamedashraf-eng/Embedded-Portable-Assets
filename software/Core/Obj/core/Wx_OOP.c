@@ -71,7 +71,7 @@ void * __THAT__;
 _WX_STATIC _WX_NORETURN __OOPLog(WX_U8 log_level, _WX_CONST WX_U8 *string);
 #endif /* LOG */
 
-
+ 
 /**
  * ===============================================================================================
  *   > Private Function Implementation

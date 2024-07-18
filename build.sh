@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 rebuild=$1
-ide=$2
+test=$2
 num_cores=$(nproc)
 
 # Color codes for styling
@@ -22,40 +22,34 @@ echo_color() {
 # Function to check if a file exists
 check_file_exists() {
     if [ ! -f "$1" ]; then
-        echo_color $RED "${BOLD}Error: File '$1' not found.${RESET}"
-        
+        echo_color "$RED" "${BOLD}Error: File '$1' not found.${RESET}"
+        exit 1
     fi
 }
 
-# Pre conditions
 echo "------------------------------------------------------------------------------------------------------"
-echo_color $BLUE "${BOLD}Building Software${RESET}"
 
-echo_color $BLUE "${BOLD}Building from CMake${RESET}"
-if [ "$rebuild" == "1" ]; then
-    echo_color $BLUE "${BOLD}Rebuilding is True${RESET}"
-    if ! make build_native_core rebuild=1; then
-        echo_color $RED "${BOLD}Error: Build failed.${RESET}"
-        
+# Build the project
+echo_color "$BLUE" "${BOLD}Building from CMake${RESET}"
+if [ "$test" == "1" ]; then 
+    echo_color "$BLUE" "${BOLD}Testing software${RESET}"
+    if ! make unit_test; then
+        echo_color "$RED" "${BOLD}Error: Build failed.${RESET}"
+        exit 1
     fi
 else
-    if ! make build_native_core; then
-        echo_color $RED "${BOLD}Error: Build failed.${RESET}"
-        
+    echo_color "$BLUE" "${BOLD}Building software${RESET}"
+    if [ "$rebuild" == "1" ]; then
+        echo_color "$BLUE" "${BOLD}Rebuilding is True${RESET}"
+        if ! make build rebuild=1; then
+            echo_color "$RED" "${BOLD}Error: Build failed.${RESET}"
+            exit 1
+        fi
+    else
+        if ! make build; then
+            echo_color "$RED" "${BOLD}Error: Build failed.${RESET}"
+            exit 1
+        fi
     fi
 fi
-
-echo "------------------------------------------------------------------------------------------------------"
-
-
-echo "------------------------------------------------------------------------------------------------------"
-
-echo "------------------------------------------------------------------------------------------------------"
-
-echo "------------------------------------------------------------------------------------------------------"
-# Redirect the output of Target Application
-
-echo "------------------------------------------------------------------------------------------------------"
-echo_color $BLUE "${BOLD}Program Execution Output${RESET}"
-./tools/build/CMake/output/build/wxsdk
 echo "------------------------------------------------------------------------------------------------------"

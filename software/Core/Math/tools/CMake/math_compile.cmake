@@ -1,7 +1,7 @@
 set(
     math_sources_list
 
-    ${math_sw}/core/Wx_math.c
+    ${math_sw}/core/Wx_Math.c
 )
 
 set(

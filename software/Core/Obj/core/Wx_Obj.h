@@ -1,12 +1,16 @@
 /**
  * @file Wx_Obj.h
- * @author Mohamed Wx (mohamedashrafwx@gmail.com)
- * @brief
+ * @author 
+ * Mohamed Wx (mohamedashrafwx@gmail.com)
+ * @brief 
+ * Header file for Wx_Obj class.
  * @version 0.1
  * @date 2023-10-05
  *
- * @copyright Copyright (c) 2023
- * @license MIT License
+ * @copyright 
+ * Copyright (c) 2023
+ * @license 
+ * MIT License
  *
  * @attention
  *
@@ -26,11 +30,12 @@
  *
  **/
 /*----------------------------------------------------------------------------*/
-/** @brief header gurad */
+
+/** @brief Header guard */
 #if !defined(__WX_OBJ_H__)
 #define __WX_OBJ_H__
 
-/** @brief cpp name mangle guard */
+/** @brief C++ name mangle guard */
 #if defined(__cplusplus) || defined(c_plusplus)
 extern "C" {
 #endif /* (__cplusplus) || defined(c_plusplus) */
@@ -46,19 +51,18 @@ extern "C" {
  */
 
 /**
- * @brief 
- * 
+ * @brief Macro for defining member variables of WXObj.
  */
 #define WXObj_MEMBERS \
-    WX_U8P name; \
+    WX_U8P name;
 
 /**
- * @brief 
- * 
+ * @brief Macro for defining methods of WXObj.
  */
 #define WXObj_METHODS \
     _WX_NORETURN (*debug)(WX_U8P); \
-    _WX_NORETURN (*delete)(_WX_NOARG);
+    _WX_NORETURN (*delete)(_WX_NOARG); \
+    WX_BOOL (*differ)(_WX_CONST void* ObjX, _WX_CONST void* ObjY);
 
 /**
  * ===============================================================================================
@@ -67,16 +71,14 @@ extern "C" {
  */
 
 /**
- * @brief 
- * 
+ * @brief Typedef for WXObj class structure.
  */
 typedef struct wx_obj_class WXObjClass_t;
 
 /**
- * @brief 
- * 
+ * @brief Typedef for WXObj structure.
  */
-typedef struct wx_obj WXObj_t; 
+typedef struct wx_obj WXObj_t;
 
 /**
  * ===============================================================================================
@@ -85,8 +87,7 @@ typedef struct wx_obj WXObj_t;
  */
 
 /**
- * @brief 
- * 
+ * @brief WXObj class structure.
  */
 struct wx_obj_class {
     void* super;
@@ -94,8 +95,7 @@ struct wx_obj_class {
 };
 
 /**
- * @brief 
- * 
+ * @brief WXObj structure.
  */
 struct wx_obj {
     WXObjClass_t* class;
@@ -104,27 +104,26 @@ struct wx_obj {
 
 /**
  * ===============================================================================================
- *   > Public Function Declaration
+ *   > Public Function Declarations
  * ===============================================================================================
  */
 
 /**
- * @brief 
- * 
- * @param pArg_tClass 
- * @return WXObjClass_t* 
+ * @brief Initializes the WXObj class.
+ *
+ * @param pArg_tClass Pointer to the WXObjClass_t structure.
+ * @return WXObjClass_t* Pointer to the initialized WXObjClass_t structure.
  */
 extern WXObjClass_t* WXObjClass_Init(WXObjClass_t* pArg_tClass);
 
 /**
- * @brief 
- * 
- * @param pArg_tThis 
- * @param pArG_u8Name 
- * @return WXObj_t* 
+ * @brief Creates a new WXObj instance.
+ *
+ * @param pArg_tThis Pointer to the WXObj_t structure.
+ * @param pArG_u8Name Pointer to the name of the WXObj instance.
+ * @return WXObj_t* Pointer to the created WXObj_t instance.
  */
 extern WXObj_t* WXObj_New(WXObj_t* pArg_tThis, WX_U8P pArG_u8Name);
-
 
 /*-------------------------------------*/
 #if defined(__cplusplus) || defined(c_plusplus)

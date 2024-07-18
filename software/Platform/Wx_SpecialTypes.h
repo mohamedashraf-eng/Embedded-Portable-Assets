@@ -54,7 +54,8 @@ typedef union {
         WX_U8 bit_6 : 1; /**< Bit 6 */
         WX_U8 bit_7 : 1; /**< Bit 7 */
     };
-    WX_U8 byte; /**< Full byte access */
+    WX_U8 u_byte; /**< Full byte access */
+    WX_S8 s_byte ; /**< Full byte access */
 } WXReg8_t;
 
 /** 
@@ -65,7 +66,8 @@ typedef union {
         WXReg8_t byte_1; /**< Byte 1 */
         WXReg8_t byte_2; /**< Byte 2 */
     };
-    WX_U16 hword; /**< Full 16-bit access */
+    WX_U16 u_hword; /**< Full 16-bit access */
+    WX_S16 s_hword; /**< Full 16-bit access */
 } WXReg16_t;
 
 /** 
@@ -82,7 +84,8 @@ typedef union {
         WXReg16_t hword_1; /**< Hword 1 */
         WXReg16_t hword_2; /**< Hword 2 */
     };
-    WX_U32 word; /**< Full 32-bit access */
+    WX_U32 u_word; /**< Full 32-bit access */
+    WX_S32 s_word; /**< Full 32-bit access */
 } WXReg32_t;
 
 /** 
@@ -100,10 +103,17 @@ typedef union {
         WXReg8_t byte_8; /**< Byte 8 */
     };
     struct {
+        WXReg16_t hword_1; /**< Hword 1 */
+        WXReg16_t hword_2; /**< Hword 2 */
+        WXReg16_t hword_3; /**< Hword 3 */
+        WXReg16_t hword_4; /**< Hword 4 */
+    };
+    struct {
         WXReg32_t word_1; /**< Word 1 */
         WXReg32_t word_2; /**< Word 2 */
     };
-    WX_U64 dword; /**< Full 64-bit access */
+    WX_U64 u_dword; /**< Full 64-bit access */
+    WX_S64 s_dword; /**< Full 64-bit access */
 } WXReg64_t;
 
 /** 
@@ -114,7 +124,8 @@ typedef union {
         WXReg64_t dword_1; /**< Dword 1 */
         WXReg64_t dword_2; /**< Dword 2 */
     };
-    WX_U8 i128_[16]; /**< Full 128-bit access */
+    WX_U8 ui128_[16]; /**< Full 128-bit access */
+    WX_S8 si128_[16]; /**< Full 128-bit access */
 } WXBigInt128_t;
 
 /** 
@@ -125,7 +136,8 @@ typedef union {
         WXBigInt128_t i128_1; /**< I128 1 */
         WXBigInt128_t i128_2; /**< I128 2 */
     };
-    WX_U8 i256_[32]; /**< Full 256-bit access */
+    WX_U8 ui256_[32]; /**< Full 256-bit access */
+    WX_S8 si256_[32]; /**< Full 256-bit access */
 } WXBigInt256_t;
 
 /** 
@@ -136,11 +148,13 @@ typedef union {
         WXBigInt256_t i256_1; /**< I128 1 */
         WXBigInt256_t i256_2; /**< I128 2 */
     };
-    WX_U8 i512_[32]; /**< Full 512-bit access */
+    WX_U8 ui512_[32]; /**< Full 512-bit access */
+    WX_S8 si512_[32]; /**< Full 512-bit access */
 } WXBigInt512_t;
 
 /** 
  * @brief Macros for defining register types.
+ * Mapping of current used types to the ones used in the library.
  */
 #define WX_RU8      WXReg8_t
 #define WX_RU16     WXReg16_t

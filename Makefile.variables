@@ -7,7 +7,7 @@ WORKSPACE_DIR := $(CURDIR)
 # Define Common Macros
 ####################################
 MAXIMUM_CPU_CORES?=$(shell grep -c ^processor /proc/cpuinfo)
-COMPILER_NAME=x86_64-linux-gnu-gcc-11
+COMPILER_NAME=gcc-arm-none-eabi-10.3-2021.10-x86_64-linux
 
 ####################################
 # Define Common Dirs
@@ -21,7 +21,7 @@ INSTALL_DIR = $(CMAKE_PROJECT_DIR)/output
 BINARY_INSTALL_DIR = $(INSTALL_DIR)/build
 TESTS_INSTALL_DIR = $(INSTALL_DIR)/tests
 UNIT_TESTS_INSTALL_DIR = $(TESTS_INSTALL_DIR)/unit
-COMPILER_DIR=/bin
+COMPILER_DIR=/opt/compilers
 TOOLCHAIN_DIR=$(COMPILER_DIR)/$(COMPILER_NAME)
 CMOCK_DIR = $(TOOLS_DIR)/frameworks/CMock
 UNITY_ROOT= $(CMOCK_DIR)/vendor/unity

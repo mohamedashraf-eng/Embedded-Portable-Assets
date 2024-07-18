@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(wxsdk)
 
-include("${CMAKE_PROJECT_DIR}/wx_user.cmake")
+include("${CMAKE_PROJECT_DIR}/user.cmake")
 
 # Building SW
 message(STATUS "Building SW @${SW_DIR}")

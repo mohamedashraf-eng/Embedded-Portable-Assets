@@ -99,6 +99,14 @@ _WX_STATIC _WX_NORETURN Debug(WX_U8P pArg_u8Msg);
  */
 _WX_STATIC _WX_NORETURN Delete(_WX_NOARG);
 
+/**
+ * @brief 
+ * 
+ * @param ObjX 
+ * @param ObjY 
+ * @return _WX_STATIC 
+ */
+_WX_STATIC WX_BOOL Differ(_WX_CONST void* ObjX, _WX_CONST void* ObjY);
 
 /**
  * ===============================================================================================
@@ -127,20 +135,45 @@ _WX_STATIC _WX_NORETURN __ObjLog(WX_U8 log_level, _WX_CONST WX_U8 *string) {
 }
 #endif /* LOG */
 
-
+/**
+ * @brief 
+ * 
+ * @param pArg_u8Msg 
+ * @return _WX_NORETURN 
+ */
 _WX_STATIC _WX_NORETURN Debug(WX_U8P pArg_u8Msg) {
-    LOG__(LOG_INFO, "Entered Debug method");
+    LOG__(LOG_INFO, "debug object");
 
     WX_ASSERT(pArg_u8Msg != _WX_NULL);
     WXObj_t* this = __THAT__;
     WXPRINT("[%s]: %s\r\n", this->name, pArg_u8Msg);
 }
 
+/**
+ * @brief 
+ * 
+ * @return _WX_NORETURN 
+ */
 _WX_STATIC _WX_NORETURN Delete(_WX_NOARG) {
-    LOG__(LOG_INFO, "Entered Delete method");
+    LOG__(LOG_INFO, "Delete object");
 
     WXObj_t* this = __THAT__;
     WXFREE(this);
+}
+
+/**
+ * @brief Checks if the object is equal to other object.
+ * 
+ * @param ObjX 
+ * @param ObjY 
+ * @return WX_BOOL 
+ */
+_WX_STATIC WX_BOOL Differ(_WX_CONST void* ObjX, _WX_CONST void* ObjY) {
+    LOG__(LOG_INFO, "Differentiate between this object and other object");
+
+    WXObj_t* this = __THAT__;
+    
+    return (ObjX == ObjY);
 }
 
 /**
@@ -156,12 +189,13 @@ _WX_STATIC _WX_NORETURN Delete(_WX_NOARG) {
  * @return WXObjClass_t* 
  */
 WXObjClass_t* WXObjClass_Init(WXObjClass_t* pArg_tClass) {
-    LOG__(LOG_INFO, "Entered Obj Class Init");
+    LOG__(LOG_INFO, "Init object class");
 
     pArg_tClass->super = _WX_NULL;
     pArg_tClass->debug = Debug;
     pArg_tClass->delete = Delete;
-
+    pArg_tClass->differ = Differ;
+    
     return &global_tClass;
 }
 
@@ -173,7 +207,7 @@ WXObjClass_t* WXObjClass_Init(WXObjClass_t* pArg_tClass) {
  * @return WXObj_t* 
  */
 WXObj_t* WXObj_New(WXObj_t* pArg_tThis, WX_U8P pArG_u8Name) {
-    LOG__(LOG_INFO, "Entered Obj new");
+    LOG__(LOG_INFO, "Create new object");
 
     if (_WX_NULL == pArg_tThis) {
         WX_ASSERT(_WX_NULL != (pArg_tThis = WXCALLOC(WXObj_t, 1u, sizeof(WXObj_t))));
@@ -181,7 +215,6 @@ WXObj_t* WXObj_New(WXObj_t* pArg_tThis, WX_U8P pArG_u8Name) {
 
     pArg_tThis->class = WXObjClass_Init(&global_tClass);
     pArg_tThis->name = pArG_u8Name;
-
+    
     return pArg_tThis;
 }
-

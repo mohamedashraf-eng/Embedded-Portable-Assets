@@ -52,8 +52,8 @@ extern void * __THAT__;
  * ===============================================================================================
  */
 
-#define _(OBJ) (_THAT_=(OBJ), ((OBJ)->class))
-#define __(OBJ) (_THAT_=(OBJ), ((OBJ)->class->super))
+#define _(_OBJ) (__THAT__=(_OBJ), ((_OBJ)->class))
+#define __(_OBJ) (__THAT__=(_OBJ), ((_OBJ)->class->super))
 
 /*-------------------------------------*/
 #if defined(__cplusplus) || defined(c_plusplus)

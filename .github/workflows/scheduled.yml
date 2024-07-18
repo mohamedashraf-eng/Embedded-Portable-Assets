@@ -1,0 +1,32 @@
+# Continous Integration for scheduled builds in the main branch of the repository.
+name: WXPSEC Scheduled Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build
+        uses: ./.github/actions/test
+
+  # test:
+  #   runs-on: ubuntu-22.04
+  #   needs: build
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #         submodules: recursive
+
+  #     - name: Test
+  #       uses: ./.github/actions/test
