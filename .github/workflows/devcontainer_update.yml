@@ -19,5 +19,5 @@ jobs:
       - name: Build and push Dev Container
         uses: devcontainers/ci@v0.3
         with:
-          imageName: ghcr.io/${{ github.repository_owner }}/psec-devcontainer
+          imageName: ghcr.io/${{ github.repository_owner }}/wxpsec-devcontainer
           push: always
