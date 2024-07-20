@@ -40,7 +40,7 @@ extern "C" {
 /*----------------------------------------------------------------------------*/
 
 /** 
- * @defgroup Functions Like Macros
+ * @defgroup Type Checking Macros
  * @{
  */
 
@@ -77,7 +77,14 @@ extern "C" {
  */
 #define WX_OFFSET_OF(TYPE, MEMBER) ((WX_U32) &((TYPE *)0)->MEMBER)
 
+/** @} */
+
 /** 
+ * @defgroup Container Macros
+ * @{
+ */
+
+/**
  * @brief Get the pointer to the parent struct from a pointer to a member.
  * 
  * This macro computes the address of the parent struct given a pointer to
@@ -107,6 +114,13 @@ extern "C" {
     (_TYPE*)( (WX_U8*)__mptr - WX_OFFSET_OF(_TYPE, _MEMBER));        \
 )) )
 
+/** @} */
+
+/** 
+ * @defgroup String Conversion Macros
+ * @{
+ */
+
 /**
  * @brief Helper macro to convert an expression to a string literal.
  * 
@@ -128,6 +142,13 @@ extern "C" {
  */
 #define WX_STRING(_EXPR) _WXSTRING( (_EXPR) )
 
+/** @} */
+
+/** 
+ * @defgroup Array Macros
+ * @{
+ */
+
 /**
  * @brief Function-like macro to get the array dimensions.
  * 
@@ -137,6 +158,13 @@ extern "C" {
  * @return unsigned long The array dimension. 
  */
 #define WX_DIM(_ARR) (WX_U32)(sizeof((_ARR)) / sizeof((_ARR)[0u]))
+
+/** @} */
+
+/** 
+ * @defgroup Pointer Access Macros
+ * @{
+ */
 
 /**
  * @brief Function-like macro to force access a pointer as container.
@@ -170,6 +198,67 @@ extern "C" {
  * @return The value of the member.
  */
 #define WX_EXTRACT_MEMBER_FROM_PTR(_TYPE, _MEMBER, _PTR) (*(_TYPE**)((void**)&(_PTR)))->_MEMBER
+
+/** @} */
+
+/** 
+ * @defgroup MinMax Macros
+ * @{
+ */
+
+/**
+ * @brief Branchless minimum macro.
+ * 
+ * @details 
+ * The branchless minimum macro calculates the minimum value of two input parameters
+ * without using any conditional statements. It is optimized for performance and can be
+ * used in low-level programming.
+ * 
+ * @param _A The first input value.
+ * @param _B The second input value.
+ * @return The minimum value of _A and _B.
+ */
+#define _WX_BRANCHLESS_MIN(_A, _B)  (((_A)*((_A) < (_B))) + ((_B)*((_B) < (_A))))
+
+/**
+ * @brief Branchless maximum macro.
+ * 
+ * @details 
+ * The branchless maximum macro calculates the maximum value of two input parameters
+ * without using any conditional statements. It is optimized for performance and can be
+ * used in low-level programming.
+ * 
+ * @param _A The first input value.
+ * @param _B The second input value.
+ * @return The maximum value of _A and _B.
+ */
+#define _WX_BRANCHLESS_MAX(_A, _B)  (((_A)*((_A) > (_B))) + ((_B)*((_B) > (_A))))
+
+/**
+ * @brief Minimum macro.
+ * 
+ * @details 
+ * The minimum macro calculates the minimum value of two input parameters. It uses the
+ * branchless minimum macro for optimized performance.
+ * 
+ * @param _A The first input value.
+ * @param _B The second input value.
+ * @return The minimum value of _A and _B.
+ */
+#define WX_MIN(_A, _B) _WX_BRANCHLESS_MIN(_A, _B) 
+
+/**
+ * @brief Maximum macro.
+ * 
+ * @details 
+ * The maximum macro calculates the maximum value of two input parameters. It uses the
+ * branchless maximum macro for optimized performance.
+ * 
+ * @param _A The first input value.
+ * @param _B The second input value.
+ * @return The maximum value of _A and _B.
+ */
+#define WX_MAX(_A, _B) _WX_BRANCHLESS_MAX(_A, _B)
 
 /** @} */
 
