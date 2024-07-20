@@ -4,11 +4,6 @@ runs:
   using: "composite"
 
   steps:
-    # Initialize and update submodules
-    - name: Update submodules
-      shell: bash
-      run: git submodule update --init --recursive
-
     # Run the build task inside the devcontainer
     - name: Run test stage
       uses: devcontainers/ci@v0.3

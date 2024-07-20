@@ -7,26 +7,16 @@ on:
       - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: recursive
 
-      - name: Build
+      - name: Test
         uses: ./.github/actions/test
 
-  # test:
-  #   runs-on: ubuntu-22.04
-  #   needs: build
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-  #       with:
-  #         fetch-depth: 0
-  #         submodules: recursive
 
-  #     - name: Test
-  #       uses: ./.github/actions/test
