@@ -13,9 +13,6 @@ add_subdirectory("${stack_sw}")
 message(STATUS  "Building Core SW @${queue_sw}")
 add_subdirectory("${queue_sw}")
 
-# # message(STATUS  "Building Core SW @${graph_sw}")
-# # add_subdirectory("${graph_sw}")
-
 message(STATUS  "Building Core SW @${math_sw}")
 add_subdirectory("${math_sw}")
 
